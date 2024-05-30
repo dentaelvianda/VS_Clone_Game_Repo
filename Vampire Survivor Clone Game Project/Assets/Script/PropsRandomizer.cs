@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class PropsRandomizer : MonoBehaviour
 {
-    public List<GameObject> propSpawnPoints;
-    public List<GameObject> propPrefabs;
+    [SerializeField] private List<GameObject> propSpawnPoints;
+    [SerializeField] private List<GameObject> propPrefabs;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         SpawnProps();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    void SpawnProps() 
+    private void SpawnProps() 
     {
         foreach (GameObject sp in propSpawnPoints)
         {

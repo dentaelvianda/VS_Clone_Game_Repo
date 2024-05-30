@@ -102,7 +102,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator TrailEnabler()
+    private IEnumerator TrailEnabler()
     {
         yield return new WaitForSeconds(0.1f);
         trailRenderer.emitting = false;
@@ -111,14 +111,12 @@ public class Player : MonoBehaviour
 
 
 
-
-
     public bool IsWalking()
     {
         return isWalking;
     }
 
-    public Vector2 MoveVector()
+    public Vector2 GetMoveDirection()
     {
         return moveDir;
     }

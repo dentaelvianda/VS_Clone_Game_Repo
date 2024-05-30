@@ -24,8 +24,8 @@ public class PlayerAnimator : MonoBehaviour
     {
         SpriteDirectionChecker();
         animator.SetBool(IS_WALKING, player.IsWalking());
-        animator.SetFloat(HORIZONTAL, player.MoveVector().x);
-        animator.SetFloat(VERTICAL, player.MoveVector().y);
+        animator.SetFloat(HORIZONTAL, player.GetMoveDirection().x);
+        animator.SetFloat(VERTICAL, player.GetMoveDirection().y);
     }
 
     private void SpriteDirectionChecker()

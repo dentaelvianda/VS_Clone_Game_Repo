@@ -8,11 +8,14 @@ public class Weapon : MonoBehaviour
 {
     [SerializeField] private Player player;
     [SerializeField] private GameInput gameInput;
-    [SerializeField] private Transform projectilePrefabs;
+    [SerializeField] private GameObject projectilePrefabs;
     [SerializeField] private Transform projectilePos;
 
-    [SerializeField] private float projectileSpeed = 50f;
- 
+    [SerializeField] private float projectileSpeed = 5f;
+
+    private Vector3 mousePos;
+
+
     private void Start()
     {
         gameInput.OnFire += GameInput_OnFire;
@@ -23,19 +26,23 @@ public class Weapon : MonoBehaviour
         AimToMousePosition();
     }
 
+
+    //===========================Rotate Weapon Based On Mouse Position=============================
     private void AimToMousePosition()
     {
-        Vector3 mousePos = gameInput.GetMousePosition();
-
+        mousePos = gameInput.GetMousePosition();
         Vector3 aimDirection = (mousePos - transform.position).normalized;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg -90f;
         transform.eulerAngles = new Vector3(0f, 0f, angle);
     }
 
+
+    //============================Fire Projectile On Right Click Mouse=============================
     private void GameInput_OnFire(object sender, System.EventArgs e)
     {
-
-        Instantiate(projectilePrefabs, projectilePos.transform.position, Quaternion.identity);
+        GameObject projectileSpawned = Instantiate(projectilePrefabs, projectilePos.position, projectilePos.rotation);
+        Rigidbody2D rigidbody2D = projectileSpawned.GetComponent<Rigidbody2D>();
+        rigidbody2D.AddForce(projectilePos.up * projectileSpeed, ForceMode2D.Impulse);
     }
 
 }

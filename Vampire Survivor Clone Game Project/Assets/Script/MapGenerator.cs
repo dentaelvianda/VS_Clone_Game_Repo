@@ -25,7 +25,7 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    void SpawnTerrainAtGridPosition(int x, int y)
+    private void SpawnTerrainAtGridPosition(int x, int y)
     {
         Vector3 terrainWorldPos = new Vector3(x * terrainSize, y * terrainSize, 0);
         GameObject terrainPrefab = GetRandomTerrainPrefab();
