@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3362009790441097927}
   - component: {fileID: 2808826242600919250}
   - component: {fileID: 1608274896865590208}
+  - component: {fileID: 1218891057165457762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -79,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1395369157
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 192531400, guid: 5be4b40469e618c46b013f56a7a936f6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -177,7 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameInput: {fileID: 0}
   moveSpeed: 5
-  dashCooldown: 2
+  dashCooldown: 3
   dashDistance: 2
   dashLayerMask:
     serializedVersion: 2
@@ -329,6 +330,19 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &1218891057165457762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355011419601603873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0873d05173c27444bbc280032e6a12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
 --- !u!1 &1834922257632236702
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +408,7 @@ MonoBehaviour:
   gameInput: {fileID: 0}
   projectilePrefabs: {fileID: 4391160562169921246, guid: 3626a7cc9059a624d84531118b44360b, type: 3}
   projectilePos: {fileID: 6089546103810182528}
-  projectileSpeed: 10
+  projectileSpeed: 20
 --- !u!1 &2389471286446064871
 GameObject:
   m_ObjectHideFlags: 0

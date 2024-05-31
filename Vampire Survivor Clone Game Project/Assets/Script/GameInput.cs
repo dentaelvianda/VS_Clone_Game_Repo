@@ -20,6 +20,11 @@ public class GameInput : MonoBehaviour
         playerInputAction.Player.Fire.performed += Fire_performed;
     }
 
+    private void OnDisable()
+    {
+        playerInputAction.Disable();
+    }
+
     private void Update()
     {
         shootDir = Camera.main.ScreenToWorldPoint(Input.mousePosition);

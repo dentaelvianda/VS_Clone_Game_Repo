@@ -7,36 +7,29 @@ public class PlayerAnimator : MonoBehaviour
 
     public const string HORIZONTAL = "Horizontal";
     public const string VERTICAL = "Vertical";
-    public const string IS_WALKING = "IsWalking";
+    public const string LAST_VEVERTICAL_DIR = "LastVerticalDir";
+    public const string LAST_HORIZONTAL_DIR = "LastHorizontalDir";
 
     [SerializeField] private Player player;
 
     private Animator animator;
-    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
-        SpriteDirectionChecker();
-        animator.SetBool(IS_WALKING, player.IsWalking());
         animator.SetFloat(HORIZONTAL, player.GetMoveDirection().x);
         animator.SetFloat(VERTICAL, player.GetMoveDirection().y);
-    }
 
-    private void SpriteDirectionChecker()
-    {
-        if (player.GetLastXVector() < 0)
+        if (player.GetMoveDirection() != Vector2.zero)
         {
-            spriteRenderer.flipX = true;
+            animator.SetFloat(LAST_HORIZONTAL_DIR, player.GetMoveDirection().x);
+            animator.SetFloat(LAST_VEVERTICAL_DIR, player.GetMoveDirection().y);
         }
-        else
-        {
-            spriteRenderer.flipX = false;
-        }
+
+
     }
 }

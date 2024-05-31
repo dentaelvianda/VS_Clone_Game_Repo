@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,12 @@ public class Player : MonoBehaviour
 
     public static Player Instance { get; private set; }
 
+    public event EventHandler<OnDashCooldownEventArgs> OnDashCooldown;
+    public class OnDashCooldownEventArgs : EventArgs
+    {
+        public float dashCounter;
+        public float dashCooldown;
+    }
 
     [SerializeField] private GameInput gameInput;
 
@@ -16,11 +23,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float dashDistance = 5f;
     [SerializeField] private LayerMask dashLayerMask;
 
-    private bool isWalking;
     private Vector3 moveDir;
     private Rigidbody2D rigidBody2D;
-    private float lastHorizontalVector;
-    private float lastVerticalVector;
     private float dashCounter;
     private TrailRenderer trailRenderer;
 
@@ -38,12 +42,19 @@ public class Player : MonoBehaviour
         rigidBody2D = GetComponent<Rigidbody2D>();
         trailRenderer = GetComponent<TrailRenderer>();
 
+        dashCounter = dashCooldown;
         gameInput.OnDash += GameInput_OnDash;
     }
 
     private void Update()
     {
         dashCounter += Time.deltaTime;
+
+        OnDashCooldown?.Invoke(this, new OnDashCooldownEventArgs
+        {
+            dashCounter = dashCounter / dashCooldown
+        });
+
         HandleInput();
     }
 
@@ -59,17 +70,6 @@ public class Player : MonoBehaviour
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
 
         moveDir = new Vector3(inputVector.x, inputVector.y, 0f);
-
-        isWalking = moveDir != Vector3.zero;
-
-        if (moveDir.x != 0)
-        {
-            lastHorizontalVector = moveDir.x;
-        }
-        if (moveDir.y != 0)
-        {
-            lastVerticalVector = moveDir.y;
-        }
     }
 
     private void ProcessMovement()
@@ -84,9 +84,12 @@ public class Player : MonoBehaviour
     //===========================DASH==============================\\
     private void GameInput_OnDash(object sender, System.EventArgs e)
     {
-        if (dashCounter > dashCooldown)
+        if (dashCounter >= dashCooldown)
         {
             dashCounter = 0f;
+
+            
+
             Vector3 dashPosition = transform.position + moveDir * dashDistance;
 
 
@@ -110,21 +113,9 @@ public class Player : MonoBehaviour
     //==============================================================\\
 
 
-
-    public bool IsWalking()
-    {
-        return isWalking;
-    }
-
     public Vector2 GetMoveDirection()
     {
         return moveDir;
-    }
-
-    public float GetLastXVector()
-    {
-        return lastHorizontalVector;
-
     }
 }
 

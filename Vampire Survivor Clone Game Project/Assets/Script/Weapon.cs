@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject projectilePrefabs;
     [SerializeField] private Transform projectilePos;
 
-    [SerializeField] private float projectileSpeed = 5f;
+    [SerializeField] private float projectileSpeed;
 
     private Vector3 mousePos;
 
@@ -19,6 +19,11 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         gameInput.OnFire += GameInput_OnFire;
+    }
+
+    private void OnDisable()
+    {
+        gameInput.OnFire -= GameInput_OnFire;
     }
 
     private void Update()
