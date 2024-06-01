@@ -4,41 +4,32 @@ using UnityEngine;
 
 public class PlayerAnimator : MonoBehaviour
 {
-    //References
-    Animator am;
-    PlayerMovement pm;
-    SpriteRenderer sr;
-    // Start is called before the first frame update
-    void Start()
+
+    public const string HORIZONTAL = "Horizontal";
+    public const string VERTICAL = "Vertical";
+    public const string LAST_VEVERTICAL_DIR = "LastVerticalDir";
+    public const string LAST_HORIZONTAL_DIR = "LastHorizontalDir";
+
+    [SerializeField] private Player player;
+
+    private Animator animator;
+
+    private void Start()
     {
-        am = GetComponent<Animator>();
-        pm = GetComponent<PlayerMovement>();
-        sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (pm.moveDir.x != 0 || pm.moveDir.y != 0)
-        {
-            am.SetBool("Move", true);
-            SpriteDirectionChecker();
-        }
-        else
-        {
-            am.SetBool("Move", false);
-        }
-    }
+        animator.SetFloat(HORIZONTAL, player.GetMoveDirection().x);
+        animator.SetFloat(VERTICAL, player.GetMoveDirection().y);
 
-    void SpriteDirectionChecker()
-    {
-        if (pm.lastHorizontalVector < 0)
+        if (player.GetMoveDirection() != Vector2.zero)
         {
-            sr.flipX = true;
+            animator.SetFloat(LAST_HORIZONTAL_DIR, player.GetMoveDirection().x);
+            animator.SetFloat(LAST_VEVERTICAL_DIR, player.GetMoveDirection().y);
         }
-        else
-        {
-            sr.flipX = false;
-        }
+
+
     }
 }
