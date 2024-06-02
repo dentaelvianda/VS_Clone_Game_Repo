@@ -41,6 +41,7 @@ public class MainMenuController : MonoBehaviour
     {
         Debug.Log("Play button clicked");
         // Add your play logic here
+        LoadingManager.Instance.LoadScene("Game");
     }
 
     private void OnSettingsButtonClicked()
