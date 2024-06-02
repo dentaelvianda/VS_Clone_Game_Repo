@@ -1988,6 +1988,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1608274896865590208, guid: 9c65a6ab51d464c4a90d6f64636e2eb6, type: 3}
+      propertyPath: m_PreviewTimeScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2106432639493028299, guid: 9c65a6ab51d464c4a90d6f64636e2eb6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.1
@@ -2040,6 +2044,10 @@ PrefabInstance:
       propertyPath: gameInput
       value: 
       objectReference: {fileID: 42787102}
+    - target: {fileID: 5393381236278517844, guid: 9c65a6ab51d464c4a90d6f64636e2eb6, type: 3}
+      propertyPath: projectileSpeed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6834556070951998376, guid: 9c65a6ab51d464c4a90d6f64636e2eb6, type: 3}
       propertyPath: gameInput
       value: 
