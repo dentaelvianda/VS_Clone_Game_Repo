@@ -12,10 +12,10 @@ public class HealthText : MonoBehaviour
     private void Start()
     {
         textMeshPro = gameObject.GetComponent<TextMeshProUGUI>();
-        health.OnHealthDecreased += Health_OnHealthDecreased;
+        health.OnHealthChanged += Health_OnHealthDecreased;
     }
 
-    private void Health_OnHealthDecreased(object sender, Health.OnHealthDecreasedEventArgs e)
+    private void Health_OnHealthDecreased(object sender, Health.OnHealthChangedEventArgs e)
     {
         textMeshPro.text = e.currentHealth.ToString() + "/" + e.maxHealth.ToString();
     }

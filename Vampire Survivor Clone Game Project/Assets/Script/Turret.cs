@@ -8,9 +8,12 @@ public class Turret : MonoBehaviour
     [SerializeField] private GameObject projectilePrefabs;
     [SerializeField] private Transform projectilePos;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private float shootingCooldown;
+
+
+    [SerializeField] private AudioClip turretShootAudio;
 
     private Transform target;
-    private float shootingCooldown = 3f;
     private float shootingCounter;
 
     private void Start()
@@ -41,6 +44,7 @@ public class Turret : MonoBehaviour
 
     private void FireProjectile()
     {
+        AudioManager.Instance.PlaySFX(turretShootAudio, projectilePos.position);
         GameObject projectileSpawned = Instantiate(projectilePrefabs, projectilePos.position, projectilePos.rotation);
         Rigidbody2D rigidbody2D = projectileSpawned.GetComponent<Rigidbody2D>();
         rigidbody2D.AddForce(projectilePos.up * projectileSpeed, ForceMode2D.Impulse);

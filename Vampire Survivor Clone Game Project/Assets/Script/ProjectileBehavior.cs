@@ -7,6 +7,7 @@ public class ProjectileBehavior : MonoBehaviour
 {
 
     [SerializeField] private float projectileDamage;
+    [SerializeField] private AudioClip projectileImpactAudio;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class ProjectileBehavior : MonoBehaviour
         {
             health.Hit(projectileDamage);
         }
+        AudioManager.Instance.PlaySFX(projectileImpactAudio, transform.position);
         Destroy(gameObject);
     }
 }

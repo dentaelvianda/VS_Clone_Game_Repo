@@ -80,6 +80,8 @@ MonoBehaviour:
   projectilePrefabs: {fileID: 4391160562169921246, guid: 3626a7cc9059a624d84531118b44360b, type: 3}
   projectilePos: {fileID: 2687450122922137273}
   projectileSpeed: 15
+  shootingCooldown: 3
+  turretShootAudio: {fileID: 8300000, guid: c3e3034f1ffeecc489b463d7c103006d, type: 3}
 --- !u!1 &3573951646555719916
 GameObject:
   m_ObjectHideFlags: 0

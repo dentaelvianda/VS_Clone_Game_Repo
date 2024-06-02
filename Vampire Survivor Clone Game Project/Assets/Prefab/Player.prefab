@@ -343,6 +343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 500
+  dropItemPrefab: {fileID: 0}
+  deathAudio: {fileID: 8300000, guid: f6b00fba35c7dde4a8df1ae467ae229b, type: 3}
 --- !u!1 &1834922257632236702
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +411,7 @@ MonoBehaviour:
   projectilePrefabs: {fileID: 4391160562169921246, guid: 3626a7cc9059a624d84531118b44360b, type: 3}
   projectilePos: {fileID: 6089546103810182528}
   projectileSpeed: 20
+  playerShootAudio: {fileID: 0}
 --- !u!1 &2389471286446064871
 GameObject:
   m_ObjectHideFlags: 0
