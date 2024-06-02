@@ -79,6 +79,12 @@ public class Player : MonoBehaviour
     //==============================================================\\
 
 
+    public Vector2 GetMouseDirection()
+    {
+        Vector3 mousePosition = gameInput.GetMousePosition();
+        Vector3 direction = (mousePosition - transform.position).normalized;
+        return new Vector2(direction.x, direction.y);
+    }
 
 
     //===========================DASH==============================\\

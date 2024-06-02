@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public event EventHandler<OnHealthDecreasedEventArgs> OnHealthDecreased;
-    public class OnHealthDecreasedEventArgs : EventArgs
+    public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
+    public class OnHealthChangedEventArgs : EventArgs
     {
         public float healthBar;
         public float maxHealth;
@@ -14,13 +14,15 @@ public class Health : MonoBehaviour
     }
     
     [SerializeField] private float maxHealth;
+    [SerializeField] private GameObject dropItemPrefab;
+    [SerializeField] private AudioClip deathAudio;
     private float currentHealth;
 
     private void Start()
     {
         currentHealth = maxHealth;
 
-        OnHealthDecreased?.Invoke(this, new OnHealthDecreasedEventArgs
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs
         {
             healthBar = 1f,
             currentHealth = currentHealth,
@@ -32,7 +34,7 @@ public class Health : MonoBehaviour
     {
         currentHealth -= damageAmount;
 
-        OnHealthDecreased?.Invoke(this, new OnHealthDecreasedEventArgs
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs
         {
             healthBar = currentHealth / maxHealth,
             currentHealth = currentHealth,
@@ -41,7 +43,34 @@ public class Health : MonoBehaviour
 
         if(currentHealth <= 0)
         {
+            if (gameObject.CompareTag("Enemy"))
+            {
+                float dropChance = UnityEngine.Random.Range(0f, 1f);
+
+                if (dropChance <= 0.2f) //drop rate 20%
+                {
+                    Instantiate(dropItemPrefab, transform.position, transform.rotation);
+                }
+            }
+            AudioManager.Instance.PlaySFX(deathAudio, transform.position);
             Destroy(gameObject);
         }
+    }
+
+    public void IncreaseHealth(float healthAmount)
+    {
+        currentHealth += healthAmount;
+
+        if(currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        OnHealthChanged?.Invoke(this, new OnHealthChangedEventArgs
+        {
+            healthBar = currentHealth / maxHealth,
+            currentHealth = currentHealth,
+            maxHealth = maxHealth
+        });
     }
 }

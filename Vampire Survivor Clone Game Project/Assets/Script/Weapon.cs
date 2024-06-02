@@ -13,6 +13,8 @@ public class Weapon : MonoBehaviour
 
     [SerializeField] private float projectileSpeed;
 
+    [SerializeField] private AudioClip playerShootAudio;
+
     private Vector3 mousePos;
 
 
@@ -45,6 +47,7 @@ public class Weapon : MonoBehaviour
     //============================Fire Projectile On Right Click Mouse=============================
     private void GameInput_OnFire(object sender, System.EventArgs e)
     {
+        AudioManager.Instance.PlaySFX(playerShootAudio, projectilePos.position);
         GameObject projectileSpawned = Instantiate(projectilePrefabs, projectilePos.position, projectilePos.rotation);
         Rigidbody2D rigidbody2D = projectileSpawned.GetComponent<Rigidbody2D>();
         rigidbody2D.AddForce(projectilePos.up * projectileSpeed, ForceMode2D.Impulse);

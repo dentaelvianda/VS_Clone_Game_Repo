@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 3227234752623114367}
   m_Layer: 9
   m_Name: _BaseEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -308,6 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  dropItemPrefab: {fileID: 8429486721288505588, guid: e6cd7a35a1e6937458c7df7c73d0fbab, type: 3}
+  deathAudio: {fileID: 8300000, guid: f6b00fba35c7dde4a8df1ae467ae229b, type: 3}
 --- !u!114 &2608745746823018877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a303205a7952ccb4f9c7d1fc245f2ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minEnemyTargetDistance: 10
 --- !u!114 &3227234752623114367
 MonoBehaviour:
   m_ObjectHideFlags: 0

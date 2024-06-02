@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileDamage: 10
+  projectileImpactAudio: {fileID: 8300000, guid: 017f87af313b64741ba1abcb6190c951, type: 3}
 --- !u!50 &3584341817126660805
 Rigidbody2D:
   serializedVersion: 4

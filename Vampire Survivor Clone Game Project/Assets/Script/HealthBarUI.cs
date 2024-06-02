@@ -10,11 +10,11 @@ public class HealthBarUI : MonoBehaviour
 
     private void Start()
     {
-        hasHealthGameObject.OnHealthDecreased += HasHealthGameObject_OnHealthDecreased;
+        hasHealthGameObject.OnHealthChanged += HasHealthGameObject_OnHealthDecreased;
         barImage.fillAmount = 1f;
     }
 
-    private void HasHealthGameObject_OnHealthDecreased(object sender, Health.OnHealthDecreasedEventArgs e)
+    private void HasHealthGameObject_OnHealthDecreased(object sender, Health.OnHealthChangedEventArgs e)
     {
         barImage.fillAmount = e.healthBar;
     }
