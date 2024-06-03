@@ -29,8 +29,11 @@ public class MainMenuController : MonoBehaviour
         settingsMenuView.SetMute(settingsModel.isMuted);
 
         // Apply settings to AudioManager
-        AudioManager.Instance.settingsModel = settingsModel;
-        AudioManager.Instance.ApplySettings();
+        AudioManager.Instance.SetMusicVolume(settingsModel.musicVolume);
+        AudioManager.Instance.SetMute(settingsModel.isMuted);
+
+        // Play main menu music
+        AudioManager.Instance.PlayMainMenuMusic();
 
         // Show main menu by default
         mainMenuView.ShowMainMenu(true);
@@ -40,14 +43,12 @@ public class MainMenuController : MonoBehaviour
     private void OnPlayButtonClicked()
     {
         Debug.Log("Play button clicked");
-        // Add your play logic here
-        LoadingManager.Instance.LoadScene("Game");
+        LoadingManager.Instance.LoadScene("Game"); 
     }
 
     private void OnSettingsButtonClicked()
     {
         Debug.Log("Settings button clicked");
-        // Tampilkan panel settings dan sembunyikan main menu
         mainMenuView.ShowMainMenu(false);
         mainMenuView.ShowSettingsMenu(true);
     }
@@ -61,7 +62,6 @@ public class MainMenuController : MonoBehaviour
     private void OnBackButtonClicked()
     {
         Debug.Log("Back to main menu");
-        // Tampilkan main menu dan sembunyikan settings menu
         mainMenuView.ShowMainMenu(true);
         mainMenuView.ShowSettingsMenu(false);
     }

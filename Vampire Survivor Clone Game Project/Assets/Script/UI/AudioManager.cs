@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -7,6 +8,9 @@ public class AudioManager : MonoBehaviour
 
     public AudioSource musicSource;
     public SettingsModel settingsModel;
+
+    public AudioClip mainMenuMusic;
+    public AudioClip gameplayMusic;
 
     public int sfxPoolSize = 10;
     private List<AudioSource> sfxSources = new List<AudioSource>();
@@ -27,6 +31,24 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         ApplySettings();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "MainMenu")
+        {
+            PlayMainMenuMusic();
+        }
+        else if (scene.name == "Game") // Ganti dengan nama scene gameplay yang sebenarnya
+        {
+            PlayGameplayMusic();
+        }
     }
 
     public void ApplySettings()
@@ -38,6 +60,24 @@ public class AudioManager : MonoBehaviour
             sfxSource.mute = settingsModel.isMuted;
         }
         musicSource.mute = settingsModel.isMuted;
+    }
+
+    public void PlayMainMenuMusic()
+    {
+        if (musicSource.clip != mainMenuMusic)
+        {
+            musicSource.clip = mainMenuMusic;
+            musicSource.Play();
+        }
+    }
+
+    public void PlayGameplayMusic()
+    {
+        if (musicSource.clip != gameplayMusic)
+        {
+            musicSource.clip = gameplayMusic;
+            musicSource.Play();
+        }
     }
 
     public void PlayMusic(AudioClip clip)

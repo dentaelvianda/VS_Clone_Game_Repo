@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1006426868492753054}
   settingsModel: {fileID: 11400000, guid: f9ee125cfe192b14eb9fa8657708097c, type: 2}
+  mainMenuMusic: {fileID: 8300000, guid: 530b9a9daee6c1a4d8aae20489b26cc0, type: 3}
+  gameplayMusic: {fileID: 8300000, guid: 9389c6e810f3c3b4495be7e2dff8c902, type: 3}
   sfxPoolSize: 10
 --- !u!82 &1006426868492753054
 AudioSource:
