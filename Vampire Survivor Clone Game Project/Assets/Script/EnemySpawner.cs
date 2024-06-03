@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
                     enemySpawned.GetComponent<EnemyAI>().SetChaseTarget(true);
                 }
                 currentWave++;
+                waveCounter = 0f;
             }
             
         }
