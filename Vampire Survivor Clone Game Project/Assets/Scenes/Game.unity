@@ -399,6 +399,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 149402423383882066, guid: 4bd03d48ed8b1b44f9ef05aa80c750f4, type: 3}
+      propertyPath: totalWave
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 149402423383882066, guid: 4bd03d48ed8b1b44f9ef05aa80c750f4, type: 3}
       propertyPath: spawnPositionList.Array.size
       value: 6
       objectReference: {fileID: 0}

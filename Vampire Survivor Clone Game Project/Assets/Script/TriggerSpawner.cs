@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TriggerSpawner : MonoBehaviour
 {
+    [SerializeField] private int totalWave = 2;
+ 
     private EnemySpawner enemySpawner;
 
     private void Awake()
