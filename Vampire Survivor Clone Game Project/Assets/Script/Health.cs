@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public event EventHandler OnPlayerDeath;
     public event EventHandler<OnHealthChangedEventArgs> OnHealthChanged;
     public class OnHealthChangedEventArgs : EventArgs
     {
@@ -51,8 +52,14 @@ public class Health : MonoBehaviour
                 {
                     Instantiate(dropItemPrefab, transform.position, transform.rotation);
                 }
+                AudioManager.Instance.PlaySFX(deathAudio, transform.position);
+            } 
+            else if (gameObject.CompareTag("Player"))
+            {
+                AudioManager.Instance.PlaySFX(deathAudio, transform.position);
+                OnPlayerDeath?.Invoke(this, EventArgs.Empty);
             }
-            AudioManager.Instance.PlaySFX(deathAudio, transform.position);
+
             Destroy(gameObject);
         }
     }
